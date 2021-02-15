@@ -4,8 +4,9 @@ public enum Move {
     ROCK, PAPER, SCISSORS;
 
 
-    public int compareMoves(Move otherMove)  {
-        if (this == otherMove)
+    public int compareMoves(Move otherMove) {
+
+       if (this == otherMove)
             return 0;
 
         switch (this) {

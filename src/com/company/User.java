@@ -11,25 +11,40 @@ public class User {
     }
 
     public Move getMove() {
+
         System.out.println("Rock Paper Scissors?");
         String userInput = inputScanner.nextLine();
         userInput = userInput.toUpperCase();
-        Move input = Move.valueOf(userInput.toUpperCase());
+        {
+            try {
+                Move input = Move.valueOf(userInput.toUpperCase());
 
-        switch (input) {
-            case ROCK:
-                return Move.ROCK;
-            case SCISSORS:
-                return Move.SCISSORS;
-            case PAPER:
-                return Move.PAPER;
 
+                switch (input) {
+
+                    case ROCK:
+                        return Move.ROCK;
+                    case SCISSORS:
+                        return Move.SCISSORS;
+                    case PAPER:
+                        return Move.PAPER;
+
+                }
+
+                throw new IllegalArgumentException();
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Ooopsie!");
+
+            }
         }
 
 
         return getMove();
 
+
     }
+
 
     public boolean playAgain() {
         System.out.println("Wanna play again?");

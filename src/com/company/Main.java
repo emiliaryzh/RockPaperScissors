@@ -19,6 +19,7 @@ public class Main {
 
 
     public void startGame()  {
+
         System.out.println("Rock, Paper, Scissors!");
         Move userMove = user.getMove();
         Move computerMove = computer.getMove();
@@ -26,6 +27,7 @@ public class Main {
         System.out.println("Computer's turn " + computerMove + ".\n");
 
         int compareMoves = userMove.compareMoves(computerMove);
+
         switch (compareMoves) {
             case 0:
                 System.out.println("It's a draw!");
@@ -92,9 +94,10 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         Main game = new Main();
         game.startGame();
+
     }
 
 }
