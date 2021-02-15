@@ -18,8 +18,6 @@ public class User {
         {
             try {
                 Move input = Move.valueOf(userInput.toUpperCase());
-
-
                 switch (input) {
 
                     case ROCK:
@@ -34,7 +32,7 @@ public class User {
                 throw new IllegalArgumentException();
 
             } catch (IllegalArgumentException e) {
-                System.out.println("Ooopsie!");
+                System.out.println("Oopsie, try another one, пацан!");
 
             }
         }
