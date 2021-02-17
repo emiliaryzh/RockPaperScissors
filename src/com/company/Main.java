@@ -18,7 +18,7 @@ public class Main {
     }
 
 
-    public void startGame()  {
+    public void startGame() {
 
         System.out.println("Rock, Paper, Scissors!");
         Move userMove = user.getMove();
@@ -45,13 +45,25 @@ public class Main {
         }
         numberOfGames++;
 
+
         if (user.playAgain()) {
             System.out.println();
             startGame();
-        } else {
+        } else { try{
             printGameStats();
         }
-    }
+       finally {
+            System.out.println("Game over!");
+        }
+
+
+
+
+
+
+        }}
+
+
 
     public void printGameStats() {
         int wins = userScore;
@@ -94,12 +106,11 @@ public class Main {
         }
     }
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         Main game = new Main();
         game.startGame();
 
     }
-
 }
 
 
