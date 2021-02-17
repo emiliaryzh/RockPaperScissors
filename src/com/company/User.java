@@ -44,12 +44,11 @@ public class User {
     }
 
 
-    public boolean playAgain()  {
+    public boolean playAgain() {
         System.out.println("Wanna play again?");
         String userInput = inputScanner.nextLine();
         userInput = userInput.toUpperCase();
         return userInput.equalsIgnoreCase("yes");
-
 
 
     }

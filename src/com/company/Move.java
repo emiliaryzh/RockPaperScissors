@@ -17,7 +17,6 @@ public enum Move {
             case SCISSORS:
                 return (otherMove == PAPER ? 1 : 2);
 
-
         }
         return 0;
 

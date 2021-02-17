@@ -49,20 +49,16 @@ public class Main {
         if (user.playAgain()) {
             System.out.println();
             startGame();
-        } else { try{
-            printGameStats();
+        } else {
+            try {
+                printGameStats();
+            } finally {
+                System.out.println("Game over!");
+            }
+
+
         }
-       finally {
-            System.out.println("Game over!");
-        }
-
-
-
-
-
-
-        }}
-
+    }
 
 
     public void printGameStats() {
@@ -90,7 +86,7 @@ public class Main {
         printDashes(18);
         System.out.println("|");
 
-        System.out.printf("|  %6d  |  %6d  |  %6d  |  %12d  |  %13.2f%%  |\n",
+        System.out.printf("| %6d | %6d | %6d | %12d | %13.2f%% |\n",
                 wins, losses, ties, numberOfGames, percentageWon * 100);
 
         System.out.print("+");
