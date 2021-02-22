@@ -6,7 +6,7 @@ public enum Move {
 
     public int compareMoves(Move otherMove) {
 
-       if (this == otherMove)
+        if (this == otherMove)
             return 0;
 
         switch (this) {

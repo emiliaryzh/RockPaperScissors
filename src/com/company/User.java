@@ -39,10 +39,7 @@ public class User {
 
 
         return getMove();
-
-
     }
-
 
     public boolean playAgain() {
         System.out.println("Wanna play again?");

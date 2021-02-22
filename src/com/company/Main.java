@@ -1,5 +1,11 @@
 package com.company;
 
+import javafx.scene.shape.Path;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class Main {
     User user;
     Computer computer;
@@ -13,12 +19,9 @@ public class Main {
         userScore = 0;
         computerScore = 0;
         numberOfGames = 0;
-
-
     }
 
-
-    public void startGame() {
+    public void startGame() throws FileNotFoundException, UnsupportedEncodingException {
 
         System.out.println("Rock, Paper, Scissors!");
         Move userMove = user.getMove();
@@ -55,13 +58,11 @@ public class Main {
             } finally {
                 System.out.println("Game over!");
             }
-
-
         }
     }
 
 
-    public void printGameStats() {
+    private void printGameStats() throws FileNotFoundException, UnsupportedEncodingException {
         int wins = userScore;
         int losses = computerScore;
         int ties = numberOfGames - userScore - computerScore;
@@ -92,9 +93,54 @@ public class Main {
         System.out.print("+");
         printDashes(68);
         System.out.println("+");
+        printGameStatsToFile();
+    }
 
+    private void printGameStatsToFile() throws FileNotFoundException, UnsupportedEncodingException {
+        PrintWriter writer = new PrintWriter("src/result", "UTF-8");
+        int wins = userScore;
+        int losses = computerScore;
+        int ties = numberOfGames - userScore - computerScore;
+        double percentageWon = (wins + ((double) ties) / 2) / numberOfGames;
+
+
+        writer.print("+");
+        writeDashes(68, writer);
+        writer.println("+");
+
+        writer.printf("| %6s | %6s | %6s | %12s | %14s |\n",
+                "WINS", "LOSSES", "DRAWS", "GAMES PLAYED", "PERCENTAGE WON");
+
+        writer.print("|");
+        writeDashes(10, writer);
+        writer.print("+");
+        writeDashes(10, writer);
+        writer.print("+");
+        writeDashes(10, writer);
+        writer.print("+");
+        writeDashes(16, writer);
+        writer.print("+");
+        writeDashes(18, writer);
+        writer.println("|");
+
+        writer.printf("| %6d | %6d | %6d | %12d | %13.2f%% |\n",
+                wins, losses, ties, numberOfGames, percentageWon * 100);
+
+        writer.print("+");
+        writeDashes(68, writer);
+        writer.println("+");
+        writer.println("Game over!");
+        writer.close();
 
     }
+
+    private void writeDashes(int numberOfDashesToWrite, PrintWriter writer) throws FileNotFoundException {
+//        PrintWriter writer = new PrintWriter("src/result");
+        for (int i = 0; i < numberOfDashesToWrite; i++) {
+            writer.print("-");
+        }
+    }
+
 
     private void printDashes(int numberOfDashes) {
         for (int i = 0; i < numberOfDashes; i++) {
@@ -102,10 +148,12 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException {
         Main game = new Main();
         game.startGame();
-
+        System.out.println("WOW! Here is your final statistics");
+        System.out.println(new String((Files.readAllBytes(Paths.get("src/result")))));
     }
 }
 
